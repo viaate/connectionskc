@@ -10,17 +10,40 @@ const navLinks  = document.getElementById('navLinks');
 navToggle.addEventListener('click', () => {
   navLinks.classList.toggle('open');
 });
-// Close nav on link click
+// Close mobile nav on link click
 navLinks.querySelectorAll('a').forEach(link => {
   link.addEventListener('click', () => navLinks.classList.remove('open'));
 });
 
-// Contact form — simple client-side feedback
-document.getElementById('contactForm').addEventListener('submit', function(e) {
+// Contact form — submits to Formspree, delivers to ogonsher@gmail.com
+document.getElementById('contactForm').addEventListener('submit', async function(e) {
   e.preventDefault();
+  const form    = this;
   const success = document.getElementById('formSuccess');
+  const btn     = form.querySelector('.submit-btn');
+
+  btn.disabled    = true;
+  btn.textContent = 'Sending...';
+
+  try {
+    const res = await fetch(form.action, {
+      method:  'POST',
+      body:    new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    });
+    if (res.ok) {
+      success.textContent = 'Thanks for reaching out! We\'ll get back to you soon.';
+    } else {
+      success.textContent = 'Something went wrong. Please email ogonsher@gmail.com directly.';
+    }
+  } catch {
+    success.textContent = 'Something went wrong. Please email ogonsher@gmail.com directly.';
+  }
+
   success.classList.add('visible');
-  this.reset();
+  form.reset();
+  btn.disabled    = false;
+  btn.textContent = 'Send Message';
   success.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 });
 

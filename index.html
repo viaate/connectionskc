@@ -14,8 +14,8 @@
   <!-- ──────────────────── NAV ──────────────────── -->
   <header class="navbar" id="navbar">
     <div class="nav-inner">
-      <a href="#hero" class="nav-logo">
-        <img src="images/logo.png" alt="Connections KC Logo" />
+      <a href="#hero" class="nav-logo-text">
+        <span class="nav-brand-main">Connections</span><span class="nav-brand-kc"> KC</span>
       </a>
       <button class="nav-toggle" id="navToggle" aria-label="Open menu">
         <span></span><span></span><span></span>
@@ -34,7 +34,7 @@
     <div class="hero-content">
       <img src="images/logo.png" alt="Connections KC" class="hero-logo" />
       <h1>Building Bridges Through Technology</h1>
-      <p>Custom-built PCs donated to kids in Kansas City — giving every young person a chance to game, learn, and connect.</p>
+      <p>Custom-built PCs donated to kids in Kansas City, giving every young person a chance to game, learn, and connect.</p>
       <div class="hero-btns">
         <a href="#support" class="btn btn-white">Support Us</a>
         <a href="#mission" class="btn btn-outline">Learn More</a>
@@ -63,7 +63,7 @@
         <div class="about-text">
           <span class="section-label">Meet the Founder</span>
           <h2>Hi! I'm Olivia</h2>
-          <p>I'm a high school student from Kansas City who loves gaming and technology. I started building PCs for fun, and it made me realize how powerful access to technology can be.</p>
+          <p>I'm a 15-year-old student at Pembroke Hill School in Kansas City who loves gaming and technology. I started building PCs for fun, and it made me realize how powerful access to technology can be.</p>
           <p>That's why I created Connections KC, to build and donate custom PCs to kids who might not have the same opportunities. My goal is to give them a chance to explore gaming, learn STEM skills, and connect with their community, just like I have.</p>
         </div>
       </div>
@@ -76,20 +76,41 @@
       <div class="container">
         <span class="section-label light">Our Mission</span>
         <h2>Empowering Young People Through Technology</h2>
-        <p class="mission-lead">Connections KC builds and donates custom PCs to kids in the Kansas City area, giving them access to technology, gaming, and STEM opportunities. Our goal is to empower young people to learn, create, and connect, providing tools they might not otherwise have.</p>
+        <div class="mission-statement-box">
+          <p class="mission-statement-label">Mission Statement</p>
+          <p class="mission-lead">Connections KC builds and donates custom PCs to kids in the Kansas City area, giving them access to technology, gaming, and STEM opportunities. Our goal is to empower young people to learn, create, and connect, providing tools they might not otherwise have.</p>
+        </div>
         <div class="mission-cards">
           <div class="mission-card">
-            <div class="mission-icon">🎮</div>
+            <div class="mission-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="2" y="6" width="20" height="12" rx="6"/>
+                <path d="M6 12h4M8 10v4"/>
+                <circle cx="15" cy="11" r="1" fill="currentColor" stroke="none"/>
+                <circle cx="18" cy="13" r="1" fill="currentColor" stroke="none"/>
+              </svg>
+            </div>
             <h3>Gaming</h3>
             <p>Giving kids access to gaming experiences that build creativity and community.</p>
           </div>
           <div class="mission-card">
-            <div class="mission-icon">🔧</div>
+            <div class="mission-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+              </svg>
+            </div>
             <h3>STEM Skills</h3>
             <p>Hands-on technology teaches real skills that open doors to future careers.</p>
           </div>
           <div class="mission-card">
-            <div class="mission-icon">🤝</div>
+            <div class="mission-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+            </div>
             <h3>Community</h3>
             <p>Connecting kids with each other and with opportunities in Kansas City.</p>
           </div>
@@ -127,7 +148,9 @@
       <p class="support-lead">If you have an older computer you no longer use, or if you would like to support our project with a donation, your help would mean a lot. Every contribution, big or small, helps us provide kids in the Kansas City area with the technology they need to learn, explore, and have fun. Your support gives them the chance to experience gaming, build STEM skills, and connect with their community in ways they might not otherwise be able to.</p>
       <p class="support-sub">To get in contact or make a donation, please fill out the form below, and we'll be in touch to coordinate the next steps.</p>
 
-      <form class="contact-form" id="contactForm" novalidate>
+      <!-- Formspree: sign in at formspree.io with ogonsher@gmail.com, create a form, then replace YOURFORMID below -->
+      <form class="contact-form" id="contactForm" action="https://formspree.io/f/YOURFORMID" method="POST" novalidate>
+        <input type="hidden" name="_subject" value="New message from Connections KC website" />
         <div class="form-row">
           <div class="form-group">
             <label for="name">Your Name</label>
