@@ -15,7 +15,7 @@ navLinks.querySelectorAll('a').forEach(link => {
   link.addEventListener('click', () => navLinks.classList.remove('open'));
 });
 
-// Contact form — submits to Formspree, delivers to ogonsher@gmail.com
+// Contact form: submits to Formspree, delivers to ogonsher@gmail.com
 document.getElementById('contactForm').addEventListener('submit', async function(e) {
   e.preventDefault();
   const form    = this;
