@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Connections KC</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ──────────────────── NAV ──────────────────── -->
+  <header class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo">
+        <img src="images/logo.png" alt="Connections KC Logo" />
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="nav-links" id="navLinks">
+        <a href="#about">About</a>
+        <a href="#mission">Mission</a>
+        <a href="#gallery">Our Work</a>
+        <a href="#support" class="nav-cta">Support Us</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ──────────────────── HERO ──────────────────── -->
+  <section class="hero" id="hero">
+    <div class="hero-content">
+      <img src="images/logo.png" alt="Connections KC" class="hero-logo" />
+      <h1>Building Bridges Through Technology</h1>
+      <p>Custom-built PCs donated to kids in Kansas City — giving every young person a chance to game, learn, and connect.</p>
+      <div class="hero-btns">
+        <a href="#support" class="btn btn-white">Support Us</a>
+        <a href="#mission" class="btn btn-outline">Learn More</a>
+      </div>
+    </div>
+    <div class="hero-wave">
+      <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="#ffffff"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ──────────────────── ABOUT ──────────────────── -->
+  <section class="about" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-photo">
+          <div class="photo-frame">
+            <img src="images/olivia.jpg" alt="Olivia Gonsher, Founder & CEO" />
+          </div>
+          <div class="about-badge">
+            <span class="badge-title">Olivia Gonsher</span>
+            <span class="badge-role">Founder &amp; CEO</span>
+          </div>
+        </div>
+        <div class="about-text">
+          <span class="section-label">Meet the Founder</span>
+          <h2>Hi! I'm Olivia</h2>
+          <p>I'm a high school student from Kansas City who loves gaming and technology. I started building PCs for fun, and it made me realize how powerful access to technology can be.</p>
+          <p>That's why I created Connections KC, to build and donate custom PCs to kids who might not have the same opportunities. My goal is to give them a chance to explore gaming, learn STEM skills, and connect with their community, just like I have.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ──────────────────── MISSION ──────────────────── -->
+  <section class="mission" id="mission">
+    <div class="mission-bg">
+      <div class="container">
+        <span class="section-label light">Our Mission</span>
+        <h2>Empowering Young People Through Technology</h2>
+        <p class="mission-lead">Connections KC builds and donates custom PCs to kids in the Kansas City area, giving them access to technology, gaming, and STEM opportunities. Our goal is to empower young people to learn, create, and connect, providing tools they might not otherwise have.</p>
+        <div class="mission-cards">
+          <div class="mission-card">
+            <div class="mission-icon">🎮</div>
+            <h3>Gaming</h3>
+            <p>Giving kids access to gaming experiences that build creativity and community.</p>
+          </div>
+          <div class="mission-card">
+            <div class="mission-icon">🔧</div>
+            <h3>STEM Skills</h3>
+            <p>Hands-on technology teaches real skills that open doors to future careers.</p>
+          </div>
+          <div class="mission-card">
+            <div class="mission-icon">🤝</div>
+            <h3>Community</h3>
+            <p>Connecting kids with each other and with opportunities in Kansas City.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ──────────────────── GALLERY ──────────────────── -->
+  <section class="gallery" id="gallery">
+    <div class="container">
+      <span class="section-label">Our Work</span>
+      <h2>Building Connections, One PC at a Time</h2>
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="images/computer1.jpg" alt="PC build in progress" />
+        </div>
+        <div class="gallery-item">
+          <img src="images/computer2.jpg" alt="Finished PC build" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ──────────────────── SUPPORT / CONTACT ──────────────────── -->
+  <section class="support" id="support">
+    <div class="support-wave">
+      <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,40 C360,0 1080,80 1440,40 L1440,0 L0,0 Z" fill="#ffffff"/>
+      </svg>
+    </div>
+    <div class="container">
+      <span class="section-label light">Get Involved</span>
+      <h2>Support Connections KC</h2>
+      <p class="support-lead">If you have an older computer you no longer use, or if you would like to support our project with a donation, your help would mean a lot. Every contribution, big or small, helps us provide kids in the Kansas City area with the technology they need to learn, explore, and have fun. Your support gives them the chance to experience gaming, build STEM skills, and connect with their community in ways they might not otherwise be able to.</p>
+      <p class="support-sub">To get in contact or make a donation, please fill out the form below, and we'll be in touch to coordinate the next steps.</p>
+
+      <form class="contact-form" id="contactForm" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" name="name" placeholder="Jane Smith" required />
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="jane@example.com" required />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="phone">Phone (optional)</label>
+            <input type="tel" id="phone" name="phone" placeholder="(816) 555-0100" />
+          </div>
+          <div class="form-group">
+            <label for="type">How would you like to help?</label>
+            <select id="type" name="type" required>
+              <option value="" disabled selected>Select an option</option>
+              <option value="donation">Make a Monetary Donation</option>
+              <option value="computer">Donate an Old Computer</option>
+              <option value="parts">Donate PC Parts</option>
+              <option value="other">Other / General Inquiry</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group full">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="5" placeholder="Tell us a bit about how you'd like to help or any questions you have..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-white submit-btn">Send Message</button>
+        <div class="form-success" id="formSuccess">
+          Thanks for reaching out! We'll get back to you soon.
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- ──────────────────── FOOTER ──────────────────── -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <img src="images/logo.png" alt="Connections KC" class="footer-logo" />
+      <p>&copy; 2024 Connections KC. All rights reserved.</p>
+      <p>Kansas City, Missouri</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

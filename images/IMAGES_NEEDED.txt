@@ -1,0 +1,8 @@
+Place the following image files in this folder:
+
+  logo.png       — Connections KC logo (green background with box mascot)
+  olivia.jpg     — Photo of Olivia Gonsher (founder headshot)
+  computer1.jpg  — PC build photo #1 (kitchen counter setup)
+  computer2.jpg  — PC build photo #2 (desk with dual monitors)
+
+All images are referenced in index.html with these exact filenames.
