@@ -226,10 +226,8 @@ a {
   height: 200px;
   width: auto;
   margin: 0 auto 28px;
-  background: white;
-  border-radius: 24px;
-  padding: 10px;
-  box-shadow: 0 6px 28px rgba(0,0,0,0.14);
+  border-radius: 20px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.18);
 }
 
 .hero h1 {
@@ -861,12 +859,17 @@ textarea {
    PULSE ANIMATION
 ───────────────────────────────────────────── */
 @keyframes pulse-ring {
-  0%   { box-shadow: 0 0 0 0   rgba(255,255,255,0.65); }
-  70%  { box-shadow: 0 0 0 14px rgba(255,255,255,0);   }
-  100% { box-shadow: 0 0 0 0   rgba(255,255,255,0);    }
+  0%   { box-shadow: 0 0 0 0    rgba(255,255,255,0.65); }
+  70%  { box-shadow: 0 0 0 14px rgba(255,255,255,0);    }
+  100% { box-shadow: 0 0 0 0    rgba(255,255,255,0);    }
 }
 .btn-pulse {
+  background: #d4f0e1;
+  color: var(--green-deep);
   animation: pulse-ring 2.2s ease-out infinite;
+}
+.btn-pulse:hover {
+  background: #c0e8d4;
 }
 
 /* ─────────────────────────────────────────────
