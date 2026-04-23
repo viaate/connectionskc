@@ -222,11 +222,9 @@ a {
 }
 
 .hero-logo {
-  height: 160px;
+  height: 220px;
   width: auto;
   margin: 0 auto 28px;
-  border-radius: 20px;
-  box-shadow: 0 8px 40px rgba(0,0,0,0.18);
 }
 
 .hero h1 {
@@ -914,6 +912,6 @@ textarea {
     grid-template-columns: 1fr;
   }
   .hero-logo {
-    height: 120px;
+    height: 160px;
   }
 }
