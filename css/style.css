@@ -226,8 +226,6 @@ a {
   height: 200px;
   width: auto;
   margin: 0 auto 28px;
-  border-radius: 20px;
-  box-shadow: 0 8px 40px rgba(0,0,0,0.18);
 }
 
 .hero h1 {
