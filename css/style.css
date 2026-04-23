@@ -113,12 +113,10 @@ a {
   transition: background 0.3s, box-shadow 0.3s;
   background: transparent;
 }
-.navbar.scrolled {
-  background: var(--green-dark);
-  box-shadow: 0 2px 20px rgba(0,0,0,0.15);
-}
+.navbar.scrolled,
 .navbar.page-nav {
   background: var(--green);
+  box-shadow: 0 2px 20px rgba(0,0,0,0.12);
 }
 
 .nav-inner {
@@ -225,10 +223,13 @@ a {
 }
 
 .hero-logo {
-  height: 220px;
+  height: 200px;
   width: auto;
   margin: 0 auto 28px;
-  mix-blend-mode: multiply;
+  background: white;
+  border-radius: 24px;
+  padding: 10px;
+  box-shadow: 0 6px 28px rgba(0,0,0,0.14);
 }
 
 .hero h1 {
@@ -652,6 +653,10 @@ textarea {
 .footer p {
   font-size: 0.9rem;
 }
+.footer-credit {
+  font-size: 0.78rem;
+  opacity: 0.45;
+}
 .footer-nonprofit {
   font-size: 0.78rem;
   font-weight: 800;
@@ -850,6 +855,18 @@ textarea {
     max-width: 440px;
     margin: 0 auto;
   }
+}
+
+/* ─────────────────────────────────────────────
+   PULSE ANIMATION
+───────────────────────────────────────────── */
+@keyframes pulse-ring {
+  0%   { box-shadow: 0 0 0 0   rgba(255,255,255,0.65); }
+  70%  { box-shadow: 0 0 0 14px rgba(255,255,255,0);   }
+  100% { box-shadow: 0 0 0 0   rgba(255,255,255,0);    }
+}
+.btn-pulse {
+  animation: pulse-ring 2.2s ease-out infinite;
 }
 
 /* ─────────────────────────────────────────────
