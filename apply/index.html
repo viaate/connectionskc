@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Apply - Connections KC</title>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <header class="navbar scrolled" id="navbar">
+    <div class="nav-inner">
+      <a href="../" class="nav-logo-text">
+        <span class="nav-brand-main">Connections</span><span class="nav-brand-kc"> KC</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="nav-links" id="navLinks">
+        <a href="../">Home</a>
+        <a href="../#about">About</a>
+        <a href="../#mission">Mission</a>
+        <a href="../#support">Contact</a>
+        <a href="../apply/" class="nav-cta">Apply Now</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- PAGE HEADER -->
+  <section class="page-hero">
+    <div class="page-hero-content">
+      <span class="section-label light">Free Computer Program</span>
+      <h1>Apply for a Computer</h1>
+      <p>Fill out the form below and we will review your application. We accept applications on a rolling basis.</p>
+    </div>
+    <div class="hero-wave">
+      <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="#ffffff"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- WHAT YOU'LL RECEIVE -->
+  <section class="what-you-get">
+    <div class="container">
+      <span class="section-label">What You Will Receive</span>
+      <h2>A Real Computer, Ready to Use</h2>
+      <p class="wyg-text">The computers we donate are fully tested and ready to use. They can run popular games like Fortnite, Minecraft, Valorant, and Roblox smoothly, and handle schoolwork, browsing, and creative projects without any issues. They are not brand-new high-end machines and won't max out the latest releases, but they are solid, reliable computers that will give you a real gaming and computing experience. Think of it like a well-maintained used car rather than a new one off the lot.</p>
+      <div class="wyg-cards">
+        <div class="wyg-card">
+          <div class="wyg-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="5" y="2" width="14" height="20" rx="2"/>
+              <line x1="9" y1="7" x2="15" y2="7"/>
+              <line x1="9" y1="11" x2="15" y2="11"/>
+              <circle cx="12" cy="17" r="1" fill="currentColor" stroke="none"/>
+            </svg>
+          </div>
+          <h3>Desktop Computer</h3>
+          <p>Included with every application. Gaming-capable and fully tested.</p>
+        </div>
+        <div class="wyg-card">
+          <div class="wyg-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="2" y="3" width="20" height="14" rx="2"/>
+              <line x1="8" y1="21" x2="16" y2="21"/>
+              <line x1="12" y1="17" x2="12" y2="21"/>
+            </svg>
+          </div>
+          <h3>Monitor</h3>
+          <p>Available if you need one. Just let us know on the form below.</p>
+        </div>
+        <div class="wyg-card">
+          <div class="wyg-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="2" y="7" width="20" height="12" rx="2"/>
+              <line x1="6" y1="11" x2="6" y2="11" stroke-width="2.5"/>
+              <line x1="10" y1="11" x2="10" y2="11" stroke-width="2.5"/>
+              <line x1="14" y1="11" x2="14" y2="11" stroke-width="2.5"/>
+              <line x1="18" y1="11" x2="18" y2="11" stroke-width="2.5"/>
+              <line x1="8" y1="15" x2="16" y2="15"/>
+            </svg>
+          </div>
+          <h3>Keyboard and Mouse</h3>
+          <p>Available if you need them. Just let us know on the form below.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- APPLICATION FORM -->
+  <section class="apply-form-section">
+    <div class="support-wave">
+      <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,40 C360,0 1080,80 1440,40 L1440,0 L0,0 Z" fill="#ffffff"/>
+      </svg>
+    </div>
+    <div class="container">
+      <span class="section-label light">The Application</span>
+      <h2>Tell Us About Yourself</h2>
+      <!-- Formspree: create a second form at formspree.io with ogonsher@gmail.com and replace APPLYFORMID -->
+      <form class="contact-form apply-form" id="applyForm" action="https://formspree.io/f/APPLYFORMID" method="POST" novalidate>
+        <input type="hidden" name="_subject" value="New Computer Application - Connections KC" />
+
+        <p class="form-section-title">Personal Information</p>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="full-name">Full Name</label>
+            <input type="text" id="full-name" name="full_name" placeholder="Jane Smith" required />
+          </div>
+          <div class="form-group">
+            <label for="age">Age</label>
+            <input type="number" id="age" name="age" placeholder="15" min="5" max="25" required />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="school">School</label>
+            <input type="text" id="school" name="school" placeholder="Your school name" />
+          </div>
+          <div class="form-group">
+            <label for="grade">Grade</label>
+            <input type="text" id="grade" name="grade" placeholder="e.g. 9th grade" />
+          </div>
+        </div>
+        <div class="form-group full">
+          <label for="address">Current Address</label>
+          <input type="text" id="address" name="address" placeholder="123 Main St, Kansas City, MO 64101" required />
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="apply-email">Email Address</label>
+            <input type="email" id="apply-email" name="email" placeholder="jane@example.com" required />
+          </div>
+          <div class="form-group">
+            <label for="apply-phone">Phone Number</label>
+            <input type="tel" id="apply-phone" name="phone" placeholder="(816) 555-0100" />
+          </div>
+        </div>
+
+        <p class="form-section-title">Household Information</p>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="guardian">Parent or Guardian Name</label>
+            <input type="text" id="guardian" name="guardian_name" placeholder="Parent or guardian's full name" required />
+          </div>
+          <div class="form-group">
+            <label for="household-size">Number of People in Household</label>
+            <input type="number" id="household-size" name="household_size" placeholder="e.g. 4" min="1" max="20" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="income">Rough Yearly Household Income</label>
+            <select id="income" name="household_income" required>
+              <option value="" disabled selected>Select a range</option>
+              <option value="under-25k">Under $25,000</option>
+              <option value="25k-50k">$25,000 - $49,999</option>
+              <option value="50k-75k">$50,000 - $74,999</option>
+              <option value="75k-100k">$75,000 - $99,999</option>
+              <option value="100k-plus">$100,000 or more</option>
+              <option value="prefer-not">Prefer not to say</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="has-computer">Do you currently have a computer at home?</label>
+            <select id="has-computer" name="has_computer" required>
+              <option value="" disabled selected>Select an option</option>
+              <option value="no">No</option>
+              <option value="shared">Yes, shared with family</option>
+              <option value="yes">Yes, my own</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="has-internet">Do you have internet access at home?</label>
+            <select id="has-internet" name="has_internet" required>
+              <option value="" disabled selected>Select an option</option>
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="applied-before">Have you applied before?</label>
+            <select id="applied-before" name="applied_before" required>
+              <option value="" disabled selected>Select an option</option>
+              <option value="no">No</option>
+              <option value="yes">Yes</option>
+            </select>
+          </div>
+        </div>
+
+        <p class="form-section-title">Equipment Request</p>
+        <p class="form-section-sub">A desktop computer is included with every application. Let us know if you also need any of the following:</p>
+        <div class="checkbox-group">
+          <label class="checkbox-label">
+            <input type="checkbox" name="needs_monitor" value="yes" />
+            <span>Monitor</span>
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" name="needs_keyboard" value="yes" />
+            <span>Keyboard</span>
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" name="needs_mouse" value="yes" />
+            <span>Mouse</span>
+          </label>
+        </div>
+
+        <p class="form-section-title">Your Application</p>
+        <div class="form-group full">
+          <label for="use-case">What would you use the computer for?</label>
+          <textarea id="use-case" name="use_case" rows="4" placeholder="Gaming, schoolwork, creative projects - tell us what you have in mind."></textarea>
+        </div>
+        <div class="form-group full">
+          <label for="why-you">Why should you receive this computer?</label>
+          <textarea id="why-you" name="why_receive" rows="5" placeholder="Tell us a bit about your situation and why this computer would make a difference for you."></textarea>
+        </div>
+
+        <div class="form-group full">
+          <label class="checkbox-label confirm-label">
+            <input type="checkbox" name="confirmed" value="yes" id="confirm" required />
+            <span>I confirm that all of the information I have provided is true and accurate to the best of my knowledge.</span>
+          </label>
+        </div>
+
+        <button type="submit" class="btn submit-btn">Submit Application</button>
+        <div class="form-success" id="applySuccess">
+          Your application has been submitted! We will review it and reach out to you soon.
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <img src="../images/logo.png" alt="Connections KC" class="footer-logo" />
+      <p class="footer-nonprofit">Registered Not-for-Profit Organization</p>
+      <p>&copy; 2024 Connections KC. All rights reserved.</p>
+      <p>Kansas City, Missouri</p>
+    </div>
+  </footer>
+
+  <script>
+    const navToggle = document.getElementById('navToggle');
+    const navLinks  = document.getElementById('navLinks');
+    navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => navLinks.classList.remove('open'));
+    });
+
+    document.getElementById('applyForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const form    = this;
+      const success = document.getElementById('applySuccess');
+      const btn     = form.querySelector('.submit-btn');
+
+      btn.disabled    = true;
+      btn.textContent = 'Submitting...';
+
+      try {
+        const res = await fetch(form.action, {
+          method:  'POST',
+          body:    new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+        success.textContent = res.ok
+          ? 'Your application has been submitted! We will review it and reach out to you soon.'
+          : 'Something went wrong. Please email ogonsher@gmail.com directly.';
+      } catch {
+        success.textContent = 'Something went wrong. Please email ogonsher@gmail.com directly.';
+      }
+
+      success.classList.add('visible');
+      form.reset();
+      btn.disabled    = false;
+      btn.textContent = 'Submit Application';
+      success.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+  </script>
+</body>
+</html>
