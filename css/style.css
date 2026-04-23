@@ -864,12 +864,12 @@ textarea {
   100% { box-shadow: 0 0 0 0    rgba(255,255,255,0);    }
 }
 .btn-pulse {
-  background: #d4f0e1;
-  color: var(--green-deep);
+  background: #111111;
+  color: var(--white);
   animation: pulse-ring 2.2s ease-out infinite;
 }
 .btn-pulse:hover {
-  background: #c0e8d4;
+  background: #2a2a2a;
 }
 
 /* ─────────────────────────────────────────────
