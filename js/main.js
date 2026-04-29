@@ -15,17 +15,12 @@ navLinks.querySelectorAll('a').forEach(link => {
   link.addEventListener('click', () => navLinks.classList.remove('open'));
 });
 
-// Impact total — reads from Google Sheet (cell F1 = grand total)
-// Sheet must be shared as "Anyone with the link can view"
-// Replace SHEET_ID below with your actual Google Sheets ID
-const SHEET_ID = 'YOUR_SHEET_ID';
-fetch(`https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&range=F1`)
-  .then(r => r.text())
-  .then(text => {
-    const json = JSON.parse(text.substring(47, text.length - 2));
-    const total = json.table.rows[0].c[0].v;
+// Impact total — edit impact.json in the repo to update this number
+fetch('/impact.json')
+  .then(r => r.json())
+  .then(data => {
+    const total = data.total;
     if (!total) return;
-    // Count-up animation
     const el = document.getElementById('impactTotal');
     const duration = 1800;
     const start = performance.now();
@@ -37,9 +32,7 @@ fetch(`https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&r
     }
     requestAnimationFrame(tick);
   })
-  .catch(() => {
-    document.getElementById('impactTotal').textContent = 'Growing!';
-  });
+  .catch(() => {});
 
 // Fade-in on scroll
 const observer = new IntersectionObserver(entries => {
