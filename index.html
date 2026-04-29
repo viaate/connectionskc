@@ -212,28 +212,6 @@
     </div>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script src="js/main.js"></script>
-  <script>
-    // Replace these three values with your EmailJS credentials
-    const EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID';
-    const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
-    const EMAILJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY';
-
-    document.getElementById('contactForm').addEventListener('submit', async function(e) {
-      e.preventDefault();
-      const btn = this.querySelector('.submit-btn');
-      btn.disabled    = true;
-      btn.textContent = 'Sending...';
-      const email = this.querySelector('[name="email"]').value;
-      try {
-        await Promise.race([
-          emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, { to_email: email }, EMAILJS_PUBLIC_KEY),
-          new Promise(r => setTimeout(r, 4000))
-        ]);
-      } catch (_) {}
-      this.submit();
-    });
-  </script>
 </body>
 </html>
