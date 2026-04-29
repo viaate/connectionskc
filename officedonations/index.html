@@ -104,10 +104,11 @@
     <div class="container">
       <span class="section-label light">The Form</span>
       <h2>Tell Us About Your Donation</h2>
-      <form class="contact-form apply-form" id="donationForm" action="https://formsubmit.co/ajax/ogonsher@gmail.com" method="POST" novalidate>
+      <form class="contact-form apply-form" id="donationForm" action="https://formsubmit.co/ogonsher@gmail.com" method="POST">
         <input type="hidden" name="_subject" value="New Office Donation Offer - Connections KC" />
         <input type="hidden" name="_autoresponse" value="Hi! Thanks for reaching out to Connections KC. We received your donation offer and I will be in touch with you shortly. We really appreciate your support!" />
         <input type="hidden" name="_captcha" value="false" />
+        <input type="hidden" name="_next" value="https://connectionskc.com/thankyou/" />
 
         <p class="form-section-title">Business Information</p>
         <div class="form-group full">
@@ -152,9 +153,6 @@
         </div>
 
         <button type="submit" class="btn submit-btn">Submit Donation Offer</button>
-        <div class="form-success" id="donationSuccess">
-          Thank you! We received your donation offer and will be in touch with you shortly.
-        </div>
       </form>
     </div>
   </section>
@@ -176,36 +174,6 @@
     navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
     navLinks.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => navLinks.classList.remove('open'));
-    });
-
-    document.getElementById('donationForm').addEventListener('submit', async function(e) {
-      e.preventDefault();
-      const form    = this;
-      const success = document.getElementById('donationSuccess');
-      const btn     = form.querySelector('.submit-btn');
-
-      btn.disabled    = true;
-      btn.textContent = 'Submitting...';
-
-      try {
-        const data = Object.fromEntries(new FormData(form));
-        const res = await fetch(form.action, {
-          method:  'POST',
-          body:    JSON.stringify(data),
-          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }
-        });
-        success.textContent = res.ok
-          ? 'Thank you! We received your donation offer and will be in touch with you shortly.'
-          : 'Something went wrong. Please email ogonsher@gmail.com directly.';
-      } catch {
-        success.textContent = 'Something went wrong. Please email ogonsher@gmail.com directly.';
-      }
-
-      success.classList.add('visible');
-      form.reset();
-      btn.disabled    = false;
-      btn.textContent = 'Submit Donation Offer';
-      success.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     });
   </script>
 </body>

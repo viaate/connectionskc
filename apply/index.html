@@ -104,10 +104,11 @@
     <div class="container">
       <span class="section-label light">The Application</span>
       <h2>Tell Us About Yourself</h2>
-      <form class="contact-form apply-form" id="applyForm" action="https://formsubmit.co/ajax/ogonsher@gmail.com" method="POST" novalidate>
+      <form class="contact-form apply-form" id="applyForm" action="https://formsubmit.co/ogonsher@gmail.com" method="POST">
         <input type="hidden" name="_subject" value="New Computer Application - Connections KC" />
         <input type="hidden" name="_autoresponse" value="Hi! Thanks for applying to Connections KC. We received your application and will review it and reach out to you soon." />
         <input type="hidden" name="_captcha" value="false" />
+        <input type="hidden" name="_next" value="https://connectionskc.com/thankyou/" />
 
         <p class="form-section-title">Personal Information</p>
         <div class="form-row">
@@ -233,9 +234,6 @@
         </div>
 
         <button type="submit" class="btn submit-btn">Submit Application</button>
-        <div class="form-success" id="applySuccess">
-          Your application has been submitted! We will review it and reach out to you soon.
-        </div>
       </form>
     </div>
   </section>
@@ -257,36 +255,6 @@
     navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
     navLinks.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => navLinks.classList.remove('open'));
-    });
-
-    document.getElementById('applyForm').addEventListener('submit', async function(e) {
-      e.preventDefault();
-      const form    = this;
-      const success = document.getElementById('applySuccess');
-      const btn     = form.querySelector('.submit-btn');
-
-      btn.disabled    = true;
-      btn.textContent = 'Submitting...';
-
-      try {
-        const data = Object.fromEntries(new FormData(form));
-        const res = await fetch(form.action, {
-          method:  'POST',
-          body:    JSON.stringify(data),
-          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }
-        });
-        success.textContent = res.ok
-          ? 'Your application has been submitted! We will review it and reach out to you soon.'
-          : 'Something went wrong. Please email ogonsher@gmail.com directly.';
-      } catch {
-        success.textContent = 'Something went wrong. Please email ogonsher@gmail.com directly.';
-      }
-
-      success.classList.add('visible');
-      form.reset();
-      btn.disabled    = false;
-      btn.textContent = 'Submit Application';
-      success.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     });
   </script>
 </body>
