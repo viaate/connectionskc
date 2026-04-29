@@ -269,7 +269,7 @@ a {
    IMPACT STRIP
 ───────────────────────────────────────────── */
 .impact-strip {
-  background: var(--green);
+  background: #1e3a5f;
   padding: 36px 24px;
   text-align: center;
 }
@@ -286,14 +286,14 @@ a {
 .impact-number {
   font-size: clamp(2.4rem, 6vw, 3.6rem);
   font-weight: 900;
-  color: var(--white);
+  color: #c97d0a;
   line-height: 1;
   letter-spacing: -0.02em;
 }
 .impact-label {
   font-size: 0.95rem;
   font-weight: 700;
-  color: rgba(255,255,255,0.82);
+  color: rgba(201, 125, 10, 0.75);
   text-transform: uppercase;
   letter-spacing: 0.08em;
 }
