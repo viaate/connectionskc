@@ -266,36 +266,30 @@ a {
 }
 
 /* ─────────────────────────────────────────────
-   IMPACT STRIP
+   HERO IMPACT STAT
 ───────────────────────────────────────────── */
-.impact-strip {
-  background: #1e3a5f;
-  padding: 36px 24px;
-  text-align: center;
-}
-.impact-inner {
-  display: flex;
-  justify-content: center;
-}
-.impact-stat {
+.hero-impact {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
+  gap: 4px;
+  margin-top: 40px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(255,255,255,0.25);
 }
-.impact-number {
-  font-size: clamp(2.4rem, 6vw, 3.6rem);
+.hero-impact-number {
+  font-size: clamp(2rem, 5vw, 3rem);
   font-weight: 900;
-  color: #c97d0a;
+  color: var(--white);
   line-height: 1;
   letter-spacing: -0.02em;
 }
-.impact-label {
-  font-size: 0.95rem;
+.hero-impact-label {
+  font-size: 0.82rem;
   font-weight: 700;
-  color: rgba(201, 125, 10, 0.75);
+  color: rgba(255,255,255,0.7);
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.12em;
 }
 
 /* ─────────────────────────────────────────────
