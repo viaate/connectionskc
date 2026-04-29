@@ -88,6 +88,10 @@
     <h1>Admin</h1>
     <label for="pwd">Password</label>
     <input type="password" id="pwd" placeholder="Enter password" />
+    <div id="tokenRow" style="display:none">
+      <label for="tok" style="margin-top:4px;">GitHub Token <span style="font-weight:400;color:#6b8a73;">(only needed once)</span></label>
+      <input type="password" id="tok" placeholder="github_pat_..." />
+    </div>
     <button onclick="checkPassword()">Enter</button>
     <div class="status error" id="loginError">Wrong password.</div>
   </div>
@@ -104,23 +108,34 @@
   </div>
 
   <script>
-    // ─── CONFIG ──────────────────────────────────────────
-    const PASSWORD    = 'ADMIN_PASSWORD';       // Replace with a password you choose
-    const GITHUB_TOKEN = 'GITHUB_TOKEN';        // Replace with your GitHub fine-grained token
-    const REPO        = 'viaate/connectionskc';
-    const BRANCH      = 'claude/connections-kc-website-FFtpl';
-    const FILE_PATH   = 'impact.json';
-    // ─────────────────────────────────────────────────────
+    const PASSWORD  = 'Bluepizza1!';
+    const REPO      = 'viaate/connectionskc';
+    const BRANCH    = 'claude/connections-kc-website-FFtpl';
+    const FILE_PATH = 'impact.json';
+
+    // Token lives in localStorage — never in the code
+    function getToken() { return localStorage.getItem('ckc_gh_token') || ''; }
 
     function checkPassword() {
-      if (document.getElementById('pwd').value === PASSWORD) {
-        document.getElementById('loginCard').style.display = 'none';
-        document.getElementById('panel').style.display = 'block';
-        loadCurrent();
-      } else {
+      const pwd = document.getElementById('pwd').value;
+      const tok = document.getElementById('tok').value.trim();
+      if (pwd !== PASSWORD) {
         document.getElementById('loginError').style.display = 'block';
+        return;
       }
+      if (tok) localStorage.setItem('ckc_gh_token', tok);
+      if (!getToken()) {
+        document.getElementById('loginError').textContent = 'Please paste your GitHub token.';
+        document.getElementById('loginError').style.display = 'block';
+        return;
+      }
+      document.getElementById('loginCard').style.display = 'none';
+      document.getElementById('panel').style.display = 'block';
+      loadCurrent();
     }
+
+    // Show token field only if not already saved in this browser
+    if (!getToken()) document.getElementById('tokenRow').style.display = 'block';
 
     document.getElementById('pwd').addEventListener('keydown', e => {
       if (e.key === 'Enter') checkPassword();
@@ -153,19 +168,18 @@
         // Get current file SHA (required by GitHub API to update a file)
         const getRes = await fetch(
           `https://api.github.com/repos/${REPO}/contents/${FILE_PATH}?ref=${BRANCH}`,
-          { headers: { Authorization: `Bearer ${GITHUB_TOKEN}` } }
+          { headers: { Authorization: `Bearer ${getToken()}` } }
         );
         if (!getRes.ok) throw new Error('Could not read file from GitHub.');
         const fileData = await getRes.json();
 
-        // Update the file
         const newContent = btoa(`{ "total": ${total} }\n`);
         const putRes = await fetch(
           `https://api.github.com/repos/${REPO}/contents/${FILE_PATH}`,
           {
             method: 'PUT',
             headers: {
-              Authorization: `Bearer ${GITHUB_TOKEN}`,
+              Authorization: `Bearer ${getToken()}`,
               'Content-Type': 'application/json'
             },
             body: JSON.stringify({
