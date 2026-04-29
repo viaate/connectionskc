@@ -26,10 +26,11 @@ document.getElementById('contactForm').addEventListener('submit', async function
   btn.textContent = 'Sending...';
 
   try {
+    const data = Object.fromEntries(new FormData(form));
     const res = await fetch(form.action, {
       method:  'POST',
-      body:    new FormData(form),
-      headers: { 'Accept': 'application/json' }
+      body:    JSON.stringify(data),
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }
     });
     if (res.ok) {
       success.textContent = 'Thanks for reaching out! We\'ll get back to you soon.';
