@@ -104,17 +104,10 @@
     <div class="container">
       <span class="section-label light">The Form</span>
       <h2>Tell Us About Your Donation</h2>
-      <!--
-        Formspree setup:
-        1. Go to formspree.io and create a new form connected to ogonsher@gmail.com
-        2. Replace OFFICEDONATIONFORMID below with the new form ID
-        3. In your Formspree dashboard, enable "Auto-response" to send a
-           confirmation email back to the donor (requires Formspree paid plan,
-           or you can reply manually using the Reply-To header that is set
-           automatically from the _replyto field below)
-      -->
-      <form class="contact-form apply-form" id="donationForm" action="https://formspree.io/f/mlgzrlzo" method="POST" novalidate>
+      <form class="contact-form apply-form" id="donationForm" action="https://formsubmit.co/ajax/ogonsher@gmail.com" method="POST" novalidate>
         <input type="hidden" name="_subject" value="New Office Donation Offer - Connections KC" />
+        <input type="hidden" name="_autoresponse" value="Hi! Thanks for reaching out to Connections KC. We received your donation offer and I will be in touch with you shortly. We really appreciate your support!" />
+        <input type="hidden" name="_captcha" value="false" />
 
         <p class="form-section-title">Business Information</p>
         <div class="form-group full">
@@ -155,9 +148,7 @@
         <p class="form-section-title">Contact</p>
         <div class="form-group full">
           <label for="contact-email">Best Email to Reach You</label>
-          <!-- This field is also used as the reply-to so you receive a confirmation -->
           <input type="email" id="contact-email" name="email" placeholder="you@yourbusiness.com" required />
-          <input type="hidden" name="_replyto" id="replyto-field" />
         </div>
 
         <button type="submit" class="btn submit-btn">Submit Donation Offer</button>
@@ -187,20 +178,11 @@
       link.addEventListener('click', () => navLinks.classList.remove('open'));
     });
 
-    // Mirror the email field into _replyto so Formspree sets Reply-To correctly
-    document.getElementById('contact-email').addEventListener('input', function() {
-      document.getElementById('replyto-field').value = this.value;
-    });
-
     document.getElementById('donationForm').addEventListener('submit', async function(e) {
       e.preventDefault();
       const form    = this;
       const success = document.getElementById('donationSuccess');
       const btn     = form.querySelector('.submit-btn');
-
-      // Mirror email into _replyto one final time before submitting
-      const emailVal = document.getElementById('contact-email').value;
-      document.getElementById('replyto-field').value = emailVal;
 
       btn.disabled    = true;
       btn.textContent = 'Submitting...';
