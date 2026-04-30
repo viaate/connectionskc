@@ -1,6 +1,12 @@
 {
   "log": [
     {
+      "date": "2026-04-30T03:13:54.204Z",
+      "field": "Show Change Log",
+      "from": false,
+      "to": true
+    },
+    {
       "date": "2026-04-30T03:13:52.613Z",
       "field": "Show Computers on Homepage",
       "from": false,
