@@ -1,6 +1,6 @@
 {
   "total": 1270,
   "computers": 1,
-  "show_computers": true,
+  "show_computers": false,
   "show_log": true
 }
