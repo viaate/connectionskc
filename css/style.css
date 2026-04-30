@@ -270,12 +270,24 @@ a {
 ───────────────────────────────────────────── */
 .hero-impact {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 4px;
+  justify-content: center;
+  gap: 32px;
   margin-top: 40px;
   padding-top: 32px;
   border-top: 1px solid rgba(255,255,255,0.25);
+  flex-wrap: wrap;
+}
+.hero-stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+.hero-stat-divider {
+  width: 1px;
+  height: 48px;
+  background: rgba(255,255,255,0.3);
 }
 .hero-impact-number {
   font-size: clamp(2rem, 5vw, 3rem);

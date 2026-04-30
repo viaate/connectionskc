@@ -43,8 +43,15 @@
         <a href="#mission" class="btn btn-white">Learn More</a>
       </div>
       <div class="hero-impact">
-        <span class="hero-impact-number" id="impactTotal">...</span>
-        <span class="hero-impact-label">received in donated goods &amp; cash</span>
+        <div class="hero-stat-item">
+          <span class="hero-impact-number" id="impactTotal">...</span>
+          <span class="hero-impact-label">received in donated goods &amp; cash</span>
+        </div>
+        <div class="hero-stat-divider" id="statDivider" style="display:none"></div>
+        <div class="hero-stat-item" id="computerStat" style="display:none">
+          <span class="hero-impact-number" id="computersCount">0</span>
+          <span class="hero-impact-label">computers donated</span>
+        </div>
       </div>
     </div>
     <div class="hero-wave">
@@ -54,6 +61,15 @@
     </div>
   </section>
 
+
+  <!-- CHANGELOG (hidden by default, toggled via admin) -->
+  <section id="changelogSection" style="display:none;background:#f7faf8;padding:48px 24px;">
+    <div class="container" style="max-width:700px;margin:0 auto;">
+      <span class="section-label">Impact History</span>
+      <h2 style="font-size:1.6rem;font-weight:900;color:#1a2e1e;margin:10px 0 28px;">What We've Been Up To</h2>
+      <div id="changelogHome"></div>
+    </div>
+  </section>
 
   <!-- ──────────────────── ABOUT ──────────────────── -->
   <section class="about" id="about">

@@ -3,210 +3,564 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Admin - Connections KC</title>
+  <title>Admin — Connections KC</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
   <meta name="robots" content="noindex, nofollow" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: 'Nunito', sans-serif;
-      background: #f7faf8;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
+    body { font-family: 'Nunito', sans-serif; background: #f7faf8; color: #1a2e1e; min-height: 100vh; }
+
+    /* ── LOGIN ── */
+    #loginWrap {
+      min-height: 100vh; display: flex; align-items: center;
+      justify-content: center; padding: 24px;
     }
+    .login-card {
+      background: #fff; border-radius: 20px; padding: 48px 40px;
+      width: 100%; max-width: 420px;
+      box-shadow: 0 4px 32px rgba(0,0,0,0.10); text-align: center;
+    }
+    .login-logo { font-size: 1.3rem; font-weight: 900; color: #22b14c; margin-bottom: 8px; }
+    .login-card h1 { font-size: 1.5rem; font-weight: 900; color: #1a2e1e; margin-bottom: 32px; }
+
+    /* ── DASHBOARD ── */
+    #dashboard { display: none; }
+    .admin-header {
+      background: #22b14c; padding: 16px 32px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .admin-header-title { font-size: 1.15rem; font-weight: 900; color: #fff; }
+    .admin-header button {
+      background: rgba(255,255,255,0.18); color: #fff; border: none;
+      padding: 8px 20px; border-radius: 99px; font-family: 'Nunito', sans-serif;
+      font-weight: 700; font-size: 0.9rem; cursor: pointer; width: auto;
+      transition: background 0.2s;
+    }
+    .admin-header button:hover { background: rgba(255,255,255,0.3); transform: none; }
+
+    .tab-nav {
+      background: #fff; border-bottom: 2px solid #e6f7ed;
+      display: flex; gap: 0; padding: 0 24px; overflow-x: auto;
+    }
+    .tab-btn {
+      background: none; border: none; color: #6b8a73; font-family: 'Nunito', sans-serif;
+      font-weight: 700; font-size: 0.95rem; padding: 16px 24px; cursor: pointer;
+      border-bottom: 3px solid transparent; margin-bottom: -2px;
+      width: auto; border-radius: 0; transition: color 0.2s;
+    }
+    .tab-btn:hover { color: #22b14c; transform: none; }
+    .tab-btn.active { color: #22b14c; border-bottom-color: #22b14c; }
+
+    .tab-pane { display: none; max-width: 860px; margin: 0 auto; padding: 32px 24px; }
+    .tab-pane.active { display: block; }
+
+    /* ── CARDS ── */
     .card {
-      background: #fff;
-      border-radius: 20px;
-      padding: 48px 40px;
-      width: 100%;
-      max-width: 420px;
-      box-shadow: 0 4px 32px rgba(0,0,0,0.10);
-      text-align: center;
+      background: #fff; border-radius: 16px; padding: 28px 32px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.07); margin-bottom: 20px;
     }
-    .logo {
-      font-size: 1.3rem;
-      font-weight: 900;
-      color: #22b14c;
-      margin-bottom: 8px;
+    .card-title {
+      font-size: 0.75rem; font-weight: 800; letter-spacing: 0.12em;
+      text-transform: uppercase; color: #22b14c; margin-bottom: 16px;
+      padding-bottom: 10px; border-bottom: 2px solid #e6f7ed;
     }
-    h1 { font-size: 1.5rem; font-weight: 900; color: #1a2e1e; margin-bottom: 32px; }
-    label { display: block; font-weight: 700; font-size: 0.9rem; color: #1a2e1e; text-align: left; margin-bottom: 6px; }
-    input {
-      width: 100%;
-      font-family: 'Nunito', sans-serif;
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: #1a2e1e;
-      background: #f7faf8;
-      border: 2px solid transparent;
-      border-radius: 10px;
-      padding: 14px 16px;
-      outline: none;
-      transition: border-color 0.2s;
-      margin-bottom: 20px;
+    .card-row { display: flex; gap: 16px; align-items: flex-end; flex-wrap: wrap; }
+
+    /* ── FORM ELEMENTS ── */
+    label {
+      display: block; font-weight: 700; font-size: 0.88rem;
+      color: #1a2e1e; margin-bottom: 5px;
     }
-    input:focus { border-color: #22b14c; background: #fff; }
+    input[type="text"], input[type="email"], input[type="number"],
+    input[type="password"], select, textarea {
+      font-family: 'Nunito', sans-serif; font-size: 0.97rem; font-weight: 600;
+      color: #1a2e1e; background: #f7faf8; border: 2px solid transparent;
+      border-radius: 10px; padding: 11px 14px; outline: none;
+      transition: border-color 0.2s; width: 100%; margin-bottom: 0;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: #22b14c; background: #fff;
+    }
+    .form-group { flex: 1; min-width: 160px; }
+
     button {
-      width: 100%;
-      padding: 15px;
-      background: #22b14c;
-      color: #fff;
-      font-family: 'Nunito', sans-serif;
-      font-size: 1.05rem;
-      font-weight: 800;
-      border: none;
-      border-radius: 99px;
-      cursor: pointer;
-      transition: background 0.2s, transform 0.15s;
+      font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.95rem;
+      border: none; border-radius: 99px; padding: 11px 28px; cursor: pointer;
+      transition: background 0.2s, transform 0.15s; width: auto;
     }
-    button:hover { background: #1a9040; transform: translateY(-1px); }
-    button:disabled { opacity: 0.6; cursor: default; transform: none; }
-    .status {
-      margin-top: 18px;
-      padding: 12px 16px;
-      border-radius: 10px;
-      font-weight: 700;
-      font-size: 0.95rem;
-      display: none;
+    button:hover { transform: translateY(-1px); }
+    button:disabled { opacity: 0.55; cursor: default; transform: none; }
+    .btn-green { background: #22b14c; color: #fff; }
+    .btn-green:hover { background: #1a9040; }
+    .btn-red { background: #fdecea; color: #c0392b; font-size: 0.82rem; padding: 6px 14px; }
+    .btn-red:hover { background: #f5c6c2; }
+    .btn-outline { background: #f7faf8; color: #3d5445; border: 2px solid #e6f7ed; }
+    .btn-outline:hover { background: #e6f7ed; }
+
+    /* ── TOGGLE ── */
+    .toggle-row {
+      display: flex; align-items: center; gap: 12px;
+      padding: 12px 0; border-top: 1px solid #f0f0f0; margin-top: 16px;
     }
-    .status.success { background: #e6f7ed; color: #1a9040; display: block; }
-    .status.error   { background: #fdecea; color: #c0392b; display: block; }
-    .current { font-size: 0.88rem; color: #6b8a73; margin-bottom: 24px; }
-    .current span { font-weight: 800; color: #22b14c; }
+    .toggle-row label { margin: 0; font-size: 0.9rem; color: #3d5445; cursor: pointer; }
+    input[type="checkbox"] {
+      width: 18px; height: 18px; accent-color: #22b14c;
+      cursor: pointer; flex-shrink: 0;
+      background: none; border: none; padding: 0; margin: 0;
+    }
+    .toggle-note { font-size: 0.78rem; color: #6b8a73; font-weight: 600; }
+
+    /* ── STATUS MESSAGES ── */
+    .flash {
+      padding: 10px 16px; border-radius: 10px; font-weight: 700;
+      font-size: 0.9rem; margin-top: 14px; display: none;
+    }
+    .flash.success { background: #e6f7ed; color: #1a9040; display: block; }
+    .flash.error   { background: #fdecea; color: #c0392b; display: block; }
+
+    /* ── APPLICANTS ── */
+    .applicant-row {
+      display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+      padding: 14px 0; border-bottom: 1px solid #f0f0f0;
+    }
+    .applicant-row:last-child { border-bottom: none; }
+    .applicant-info { flex: 1; min-width: 180px; }
+    .applicant-name { font-weight: 800; font-size: 0.97rem; color: #1a2e1e; }
+    .applicant-email { font-size: 0.83rem; color: #6b8a73; margin-top: 2px; }
+    .applicant-date { font-size: 0.78rem; color: #aaa; margin-top: 2px; }
+    .applicant-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .applicant-actions select {
+      width: auto; padding: 7px 12px; font-size: 0.85rem; margin: 0;
+    }
+
+    .badge {
+      display: inline-block; padding: 3px 12px; border-radius: 99px;
+      font-size: 0.75rem; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase;
+    }
+    .badge-pending    { background: #fef9e7; color: #9a6c00; }
+    .badge-approved   { background: #e6f7ed; color: #1a9040; }
+    .badge-waitlisted { background: #fef3e2; color: #c47c00; }
+    .badge-denied     { background: #fdecea; color: #c0392b; }
+
+    .empty-state { text-align: center; padding: 40px 0; color: #6b8a73; font-weight: 700; }
+
+    /* ── CHANGELOG ── */
+    .log-entry {
+      display: flex; gap: 16px; padding: 12px 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .log-entry:last-child { border-bottom: none; }
+    .log-dot {
+      width: 10px; height: 10px; border-radius: 50%; background: #22b14c;
+      margin-top: 6px; flex-shrink: 0;
+    }
+    .log-date { font-size: 0.78rem; color: #6b8a73; margin-bottom: 2px; }
+    .log-text { font-size: 0.92rem; color: #1a2e1e; font-weight: 700; }
+    .log-sub  { font-size: 0.82rem; color: #6b8a73; }
+
+    /* ── OUTREACH ── */
+    .outreach-card {
+      text-align: center; padding: 48px 32px;
+    }
+    .outreach-card p { color: #6b8a73; margin-bottom: 24px; line-height: 1.7; }
+    .outreach-url-row { display: flex; gap: 12px; align-items: flex-end; margin-bottom: 32px; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      .card { padding: 20px 16px; }
+      .tab-btn { padding: 14px 14px; font-size: 0.85rem; }
+      .card-row { flex-direction: column; }
+    }
   </style>
 </head>
 <body>
 
-  <!-- LOGIN -->
-  <div class="card" id="loginCard">
-    <div class="logo">Connections KC</div>
+<!-- ══════════════════ LOGIN ══════════════════ -->
+<div id="loginWrap">
+  <div class="login-card">
+    <div class="login-logo">Connections KC</div>
     <h1>Admin</h1>
-    <label for="pwd">Password</label>
-    <input type="password" id="pwd" placeholder="Enter password" />
-    <div id="tokenRow" style="display:none">
-      <label for="tok" style="margin-top:4px;">GitHub Token <span style="font-weight:400;color:#6b8a73;">(only needed once)</span></label>
+    <div style="margin-bottom:16px;">
+      <label for="pwd">Password</label>
+      <input type="password" id="pwd" placeholder="Enter password" />
+    </div>
+    <div id="tokenRow" style="display:none; margin-bottom:16px;">
+      <label for="tok">GitHub Token <span style="font-weight:400;color:#6b8a73;">(only needed once)</span></label>
       <input type="password" id="tok" placeholder="github_pat_..." />
     </div>
-    <button onclick="checkPassword()">Enter</button>
-    <div class="status error" id="loginError">Wrong password.</div>
+    <button class="btn-green" style="width:100%;padding:15px;" onclick="checkPassword()">Enter</button>
+    <div class="flash error" id="loginError">Wrong password.</div>
+  </div>
+</div>
+
+<!-- ══════════════════ DASHBOARD ══════════════════ -->
+<div id="dashboard">
+  <header class="admin-header">
+    <span class="admin-header-title">Connections KC — Admin</span>
+    <button onclick="logout()">Log Out</button>
+  </header>
+
+  <nav class="tab-nav">
+    <button class="tab-btn active" onclick="showTab('stats',this)">Stats</button>
+    <button class="tab-btn" onclick="showTab('applicants',this)">Applicants</button>
+    <button class="tab-btn" onclick="showTab('outreach',this)">Outreach</button>
+    <button class="tab-btn" onclick="showTab('changelog',this)">Change Log</button>
+  </nav>
+
+  <!-- ── STATS ── -->
+  <div class="tab-pane active" id="tab-stats">
+
+    <div class="card">
+      <p class="card-title">Impact Total</p>
+      <div class="card-row">
+        <div class="form-group">
+          <label for="inputTotal">Dollar Amount Received</label>
+          <input type="number" id="inputTotal" min="0" placeholder="e.g. 1270" />
+        </div>
+        <button class="btn-green" onclick="saveStats()">Save to Site</button>
+      </div>
+      <div class="toggle-row">
+        <input type="checkbox" id="toggleLog" />
+        <label for="toggleLog">Show change log on homepage</label>
+        <span class="toggle-note">(off by default)</span>
+      </div>
+      <div class="flash" id="statsFlash"></div>
+    </div>
+
+    <div class="card">
+      <p class="card-title">Computers Donated</p>
+      <div class="card-row">
+        <div class="form-group">
+          <label for="inputComputers">Number of Computers</label>
+          <input type="number" id="inputComputers" min="0" placeholder="e.g. 5" />
+        </div>
+        <button class="btn-green" onclick="saveComputers()">Save to Site</button>
+      </div>
+      <div class="toggle-row">
+        <input type="checkbox" id="toggleComputers" />
+        <label for="toggleComputers">Show computers count on homepage</label>
+        <span class="toggle-note">(off by default)</span>
+      </div>
+      <div class="flash" id="computersFlash"></div>
+    </div>
+
   </div>
 
-  <!-- PANEL -->
-  <div class="card" id="panel" style="display:none">
-    <div class="logo">Connections KC</div>
-    <h1>Update Impact Total</h1>
-    <p class="current">Current value on site: <span id="currentVal">loading...</span></p>
-    <label for="newTotal">New Dollar Amount</label>
-    <input type="number" id="newTotal" placeholder="e.g. 1450" min="0" />
-    <button id="saveBtn" onclick="save()">Save to Website</button>
-    <div class="status" id="saveStatus"></div>
+  <!-- ── APPLICANTS ── -->
+  <div class="tab-pane" id="tab-applicants">
+
+    <div class="card">
+      <p class="card-title">Add Applicant</p>
+      <div class="card-row">
+        <div class="form-group">
+          <label for="newName">Full Name</label>
+          <input type="text" id="newName" placeholder="Jane Smith" />
+        </div>
+        <div class="form-group">
+          <label for="newEmail">Email</label>
+          <input type="email" id="newEmail" placeholder="jane@example.com" />
+        </div>
+        <button class="btn-green" onclick="addApplicant()">Add</button>
+      </div>
+      <div class="flash" id="applicantFlash"></div>
+    </div>
+
+    <div class="card">
+      <p class="card-title">All Applicants</p>
+      <div id="applicantsList"><div class="empty-state">Loading...</div></div>
+    </div>
+
   </div>
 
-  <script>
-    const PASSWORD  = 'Bluepizza1!';
-    const REPO      = 'viaate/connectionskc';
-    const BRANCH    = 'claude/connections-kc-website-FFtpl';
-    const FILE_PATH = 'impact.json';
+  <!-- ── OUTREACH ── -->
+  <div class="tab-pane" id="tab-outreach">
+    <div class="card outreach-card">
+      <p class="card-title" style="text-align:left;">Business Outreach Campaign</p>
+      <p>Paste your Google Sheet URL below (saved in this browser), then click the button to open it and run the outreach script.</p>
+      <div class="outreach-url-row">
+        <div class="form-group" style="text-align:left;">
+          <label for="sheetUrl">Google Sheet URL</label>
+          <input type="text" id="sheetUrl" placeholder="https://docs.google.com/spreadsheets/d/..." />
+        </div>
+        <button class="btn-outline" onclick="saveSheetUrl()">Save URL</button>
+      </div>
+      <button class="btn-green" style="padding:16px 48px;font-size:1.05rem;" onclick="openSheet()">
+        Open Outreach Sheet
+      </button>
+      <div class="flash" id="outreachFlash" style="margin-top:16px;"></div>
+    </div>
+  </div>
 
-    // Token lives in localStorage — never in the code
-    function getToken() { return localStorage.getItem('ckc_gh_token') || ''; }
+  <!-- ── CHANGE LOG ── -->
+  <div class="tab-pane" id="tab-changelog">
+    <div class="card">
+      <p class="card-title">Change History</p>
+      <div id="changelogList"><div class="empty-state">Loading...</div></div>
+    </div>
+  </div>
 
-    function checkPassword() {
-      const pwd = document.getElementById('pwd').value;
-      const tok = document.getElementById('tok').value.trim();
-      if (pwd !== PASSWORD) {
-        document.getElementById('loginError').style.display = 'block';
-        return;
-      }
-      if (tok) localStorage.setItem('ckc_gh_token', tok);
-      if (!getToken()) {
-        document.getElementById('loginError').textContent = 'Please paste your GitHub token.';
-        document.getElementById('loginError').style.display = 'block';
-        return;
-      }
-      document.getElementById('loginCard').style.display = 'none';
-      document.getElementById('panel').style.display = 'block';
-      loadCurrent();
+</div>
+
+<script>
+  const PASSWORD = 'Bluepizza1!';
+  const REPO     = 'viaate/connectionskc';
+  const BRANCH   = 'claude/connections-kc-website-FFtpl';
+
+  function getToken() { return localStorage.getItem('ckc_gh_token') || ''; }
+  if (!getToken()) document.getElementById('tokenRow').style.display = 'block';
+  document.getElementById('pwd').addEventListener('keydown', e => { if (e.key === 'Enter') checkPassword(); });
+
+  // ── AUTH ──────────────────────────────────────
+  function checkPassword() {
+    const pwd = document.getElementById('pwd').value;
+    const tok = document.getElementById('tok').value.trim();
+    if (pwd !== PASSWORD) {
+      showFlash('loginError', 'Wrong password.', 'error'); return;
     }
-
-    // Show token field only if not already saved in this browser
-    if (!getToken()) document.getElementById('tokenRow').style.display = 'block';
-
-    document.getElementById('pwd').addEventListener('keydown', e => {
-      if (e.key === 'Enter') checkPassword();
-    });
-
-    function loadCurrent() {
-      fetch(`/impact.json?nocache=${Date.now()}`)
-        .then(r => r.json())
-        .then(d => {
-          document.getElementById('currentVal').textContent = '$' + (d.total || 0).toLocaleString();
-          document.getElementById('newTotal').value = d.total || '';
-        })
-        .catch(() => {
-          document.getElementById('currentVal').textContent = 'unknown';
-        });
+    if (tok) localStorage.setItem('ckc_gh_token', tok);
+    if (!getToken()) {
+      showFlash('loginError', 'Please paste your GitHub token.', 'error'); return;
     }
+    document.getElementById('loginWrap').style.display = 'none';
+    document.getElementById('dashboard').style.display = 'block';
+    loadAll();
+  }
 
-    async function save() {
-      const total = parseInt(document.getElementById('newTotal').value, 10);
-      if (isNaN(total) || total < 0) {
-        showStatus('Please enter a valid dollar amount.', 'error');
-        return;
-      }
+  function logout() {
+    document.getElementById('dashboard').style.display = 'none';
+    document.getElementById('loginWrap').style.display = 'flex';
+  }
 
-      const btn = document.getElementById('saveBtn');
-      btn.disabled = true;
-      btn.textContent = 'Saving...';
+  // ── GITHUB API ────────────────────────────────
+  async function ghGet(path) {
+    const res = await fetch(`https://api.github.com/repos/${REPO}/contents/${path}?ref=${BRANCH}&t=${Date.now()}`,
+      { headers: { Authorization: `Bearer ${getToken()}` } });
+    if (res.status === 404) return { content: defaultFor(path), sha: null };
+    if (!res.ok) throw new Error(`Could not read ${path}`);
+    const d = await res.json();
+    return { content: JSON.parse(atob(d.content.replace(/\n/g,''))), sha: d.sha };
+  }
 
-      try {
-        // Get current file SHA (required by GitHub API to update a file)
-        const getRes = await fetch(
-          `https://api.github.com/repos/${REPO}/contents/${FILE_PATH}?ref=${BRANCH}`,
-          { headers: { Authorization: `Bearer ${getToken()}` } }
-        );
-        if (!getRes.ok) throw new Error('Could not read file from GitHub.');
-        const fileData = await getRes.json();
+  async function ghPut(path, content, sha, message) {
+    const encoded = btoa(unescape(encodeURIComponent(JSON.stringify(content, null, 2) + '\n')));
+    const body = { message, content: encoded, branch: BRANCH };
+    if (sha) body.sha = sha;
+    const res = await fetch(`https://api.github.com/repos/${REPO}/contents/${path}`,
+      { method: 'PUT', headers: { Authorization: `Bearer ${getToken()}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify(body) });
+    if (!res.ok) throw new Error(`Could not save ${path}`);
+    return (await res.json()).content.sha;
+  }
 
-        const newContent = btoa(`{ "total": ${total} }\n`);
-        const putRes = await fetch(
-          `https://api.github.com/repos/${REPO}/contents/${FILE_PATH}`,
-          {
-            method: 'PUT',
-            headers: {
-              Authorization: `Bearer ${getToken()}`,
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-              message: `Update impact total to $${total.toLocaleString()}`,
-              content: newContent,
-              sha: fileData.sha,
-              branch: BRANCH
-            })
-          }
-        );
-        if (!putRes.ok) throw new Error('GitHub rejected the update.');
+  function defaultFor(path) {
+    if (path.includes('applicants')) return { applicants: [] };
+    if (path.includes('changelog'))  return { log: [] };
+    return { total: 0, computers: 0, show_computers: false, show_log: false };
+  }
 
-        showStatus(`Saved! The site will show $${total.toLocaleString()} within a minute.`, 'success');
-        document.getElementById('currentVal').textContent = '$' + total.toLocaleString();
-      } catch (err) {
-        showStatus('Error: ' + err.message, 'error');
-      }
+  // ── STATE ─────────────────────────────────────
+  let impact = {}, impactSha = null;
+  let applicants = { applicants: [] }, applicantsSha = null;
+  let changelog = { log: [] }, changelogSha = null;
 
-      btn.disabled = false;
-      btn.textContent = 'Save to Website';
+  async function loadAll() {
+    try {
+      const [imp, app, log] = await Promise.all([
+        ghGet('impact.json'),
+        ghGet('data/applicants.json'),
+        ghGet('data/changelog.json')
+      ]);
+      impact = imp.content;       impactSha = imp.sha;
+      applicants = app.content;   applicantsSha = app.sha;
+      changelog = log.content;    changelogSha = log.sha;
+      renderStats();
+      renderApplicants();
+      renderChangelog();
+    } catch(e) {
+      alert('Error loading data: ' + e.message);
     }
+  }
 
-    function showStatus(msg, type) {
-      const el = document.getElementById('saveStatus');
-      el.textContent = msg;
-      el.className = `status ${type}`;
-    }
-  </script>
+  // ── CHANGELOG HELPER ──────────────────────────
+  async function appendLog(entries) {
+    changelog.log.unshift(...entries);
+    changelogSha = await ghPut('data/changelog.json', changelog, changelogSha, 'Auto-log stat change');
+    renderChangelog();
+  }
+
+  // ── STATS TAB ─────────────────────────────────
+  function renderStats() {
+    document.getElementById('inputTotal').value       = impact.total     ?? 0;
+    document.getElementById('inputComputers').value   = impact.computers ?? 0;
+    document.getElementById('toggleComputers').checked = impact.show_computers ?? false;
+    document.getElementById('toggleLog').checked       = impact.show_log       ?? false;
+    const sheetUrl = localStorage.getItem('ckc_sheet_url') || '';
+    document.getElementById('sheetUrl').value = sheetUrl;
+  }
+
+  async function saveStats() {
+    const newTotal   = parseInt(document.getElementById('inputTotal').value, 10) || 0;
+    const showLog    = document.getElementById('toggleLog').checked;
+    const btn        = event.target;
+    btn.disabled     = true; btn.textContent = 'Saving...';
+    try {
+      const logEntries = [];
+      if (newTotal !== impact.total)
+        logEntries.push({ date: new Date().toISOString(), field: 'Impact Total', from: impact.total, to: newTotal });
+      if (showLog !== impact.show_log)
+        logEntries.push({ date: new Date().toISOString(), field: 'Show Change Log', from: impact.show_log, to: showLog });
+
+      impact = { ...impact, total: newTotal, show_log: showLog };
+      impactSha = await ghPut('impact.json', impact, impactSha, `Update impact total to $${newTotal.toLocaleString()}`);
+      if (logEntries.length) await appendLog(logEntries);
+      showFlash('statsFlash', `Saved! Site will update to $${newTotal.toLocaleString()} within a minute.`, 'success');
+    } catch(e) { showFlash('statsFlash', 'Error: ' + e.message, 'error'); }
+    btn.disabled = false; btn.textContent = 'Save to Site';
+  }
+
+  async function saveComputers() {
+    const newCount        = parseInt(document.getElementById('inputComputers').value, 10) || 0;
+    const showComputers   = document.getElementById('toggleComputers').checked;
+    const btn             = event.target;
+    btn.disabled          = true; btn.textContent = 'Saving...';
+    try {
+      const logEntries = [];
+      if (newCount !== impact.computers)
+        logEntries.push({ date: new Date().toISOString(), field: 'Computers Donated', from: impact.computers, to: newCount });
+      if (showComputers !== impact.show_computers)
+        logEntries.push({ date: new Date().toISOString(), field: 'Show Computers on Homepage', from: impact.show_computers, to: showComputers });
+
+      impact = { ...impact, computers: newCount, show_computers: showComputers };
+      impactSha = await ghPut('impact.json', impact, impactSha, `Update computers donated to ${newCount}`);
+      if (logEntries.length) await appendLog(logEntries);
+      showFlash('computersFlash', `Saved! ${newCount} computers${showComputers ? ' — visible on homepage.' : '.'}`, 'success');
+    } catch(e) { showFlash('computersFlash', 'Error: ' + e.message, 'error'); }
+    btn.disabled = false; btn.textContent = 'Save to Site';
+  }
+
+  // ── APPLICANTS TAB ────────────────────────────
+  function renderApplicants() {
+    const list = document.getElementById('applicantsList');
+    const all  = applicants.applicants || [];
+    if (!all.length) { list.innerHTML = '<div class="empty-state">No applicants yet. Add one above.</div>'; return; }
+    list.innerHTML = all.map((a, i) => `
+      <div class="applicant-row">
+        <div class="applicant-info">
+          <div class="applicant-name">${esc(a.name)}</div>
+          <div class="applicant-email">${esc(a.email)}</div>
+          <div class="applicant-date">${a.date}</div>
+        </div>
+        <div class="applicant-actions">
+          <span class="badge badge-${a.status}">${a.status}</span>
+          <select onchange="updateStatus(${i}, this.value)">
+            <option value="pending"    ${a.status==='pending'?'selected':''}>Pending</option>
+            <option value="approved"   ${a.status==='approved'?'selected':''}>Approved</option>
+            <option value="waitlisted" ${a.status==='waitlisted'?'selected':''}>Waitlisted</option>
+            <option value="denied"     ${a.status==='denied'?'selected':''}>Denied</option>
+          </select>
+          <button class="btn-red" onclick="deleteApplicant(${i})">Remove</button>
+        </div>
+      </div>`).join('');
+  }
+
+  async function addApplicant() {
+    const name  = document.getElementById('newName').value.trim();
+    const email = document.getElementById('newEmail').value.trim();
+    if (!name || !email) { showFlash('applicantFlash', 'Please enter a name and email.', 'error'); return; }
+    const btn = event.target; btn.disabled = true; btn.textContent = 'Adding...';
+    try {
+      applicants.applicants.unshift({ id: Date.now(), name, email,
+        date: new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}),
+        status: 'pending' });
+      applicantsSha = await ghPut('data/applicants.json', applicants, applicantsSha, `Add applicant: ${name}`);
+      document.getElementById('newName').value = '';
+      document.getElementById('newEmail').value = '';
+      renderApplicants();
+      showFlash('applicantFlash', `${name} added.`, 'success');
+    } catch(e) { showFlash('applicantFlash', 'Error: ' + e.message, 'error'); }
+    btn.disabled = false; btn.textContent = 'Add';
+  }
+
+  async function updateStatus(index, newStatus) {
+    const a = applicants.applicants[index];
+    a.status = newStatus;
+    try {
+      applicantsSha = await ghPut('data/applicants.json', applicants, applicantsSha, `${a.name}: status → ${newStatus}`);
+      renderApplicants();
+    } catch(e) { alert('Error saving: ' + e.message); }
+  }
+
+  async function deleteApplicant(index) {
+    const name = applicants.applicants[index].name;
+    if (!confirm(`Remove ${name}?`)) return;
+    applicants.applicants.splice(index, 1);
+    try {
+      applicantsSha = await ghPut('data/applicants.json', applicants, applicantsSha, `Remove applicant: ${name}`);
+      renderApplicants();
+    } catch(e) { alert('Error saving: ' + e.message); }
+  }
+
+  // ── OUTREACH TAB ──────────────────────────────
+  function saveSheetUrl() {
+    const url = document.getElementById('sheetUrl').value.trim();
+    localStorage.setItem('ckc_sheet_url', url);
+    showFlash('outreachFlash', 'URL saved in this browser.', 'success');
+  }
+
+  function openSheet() {
+    const url = localStorage.getItem('ckc_sheet_url') || document.getElementById('sheetUrl').value.trim();
+    if (!url) { showFlash('outreachFlash', 'Please enter and save your Google Sheet URL first.', 'error'); return; }
+    window.open(url, '_blank');
+  }
+
+  // ── CHANGELOG TAB ─────────────────────────────
+  function renderChangelog() {
+    const list    = document.getElementById('changelogList');
+    const entries = changelog.log || [];
+    if (!entries.length) { list.innerHTML = '<div class="empty-state">No changes logged yet.</div>'; return; }
+    list.innerHTML = entries.map(e => {
+      const date = new Date(e.date).toLocaleString('en-US',
+        { month:'short', day:'numeric', year:'numeric', hour:'2-digit', minute:'2-digit' });
+      const from = fmt(e.from, e.field);
+      const to   = fmt(e.to,   e.field);
+      return `<div class="log-entry">
+        <div class="log-dot"></div>
+        <div>
+          <div class="log-date">${date}</div>
+          <div class="log-text">${esc(e.field)}</div>
+          <div class="log-sub">${from} &rarr; ${to}</div>
+        </div>
+      </div>`;
+    }).join('');
+  }
+
+  function fmt(val, field) {
+    if (typeof val === 'boolean') return val ? 'On' : 'Off';
+    if (field === 'Impact Total') return '$' + Number(val).toLocaleString();
+    return String(val);
+  }
+
+  // ── TABS ──────────────────────────────────────
+  function showTab(id, btn) {
+    document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+    btn.classList.add('active');
+  }
+
+  // ── HELPERS ───────────────────────────────────
+  function showFlash(id, msg, type) {
+    const el = document.getElementById(id);
+    el.textContent = msg; el.className = `flash ${type}`;
+    clearTimeout(el._t);
+    el._t = setTimeout(() => { el.className = 'flash'; }, 5000);
+  }
+
+  function esc(str) {
+    return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+</script>
 </body>
 </html>
