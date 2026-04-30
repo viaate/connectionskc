@@ -309,8 +309,16 @@
   const BRANCH   = 'claude/connections-kc-website-FFtpl';
 
   function getToken() { return localStorage.getItem('ckc_gh_token') || ''; }
-  if (!getToken()) document.getElementById('tokenRow').style.display = 'block';
-  document.getElementById('pwd').addEventListener('keydown', e => { if (e.key === 'Enter') checkPassword(); });
+
+  // Skip login entirely if already authenticated
+  if (localStorage.getItem('ckc_authed') === '1' && getToken()) {
+    document.getElementById('loginWrap').style.display = 'none';
+    document.getElementById('dashboard').style.display = 'block';
+    loadAll();
+  } else {
+    if (!getToken()) document.getElementById('tokenRow').style.display = 'block';
+    document.getElementById('pwd').addEventListener('keydown', e => { if (e.key === 'Enter') checkPassword(); });
+  }
 
   // ── AUTH ──────────────────────────────────────
   function checkPassword() {
@@ -323,12 +331,14 @@
     if (!getToken()) {
       showFlash('loginError', 'Please paste your GitHub token.', 'error'); return;
     }
+    localStorage.setItem('ckc_authed', '1');
     document.getElementById('loginWrap').style.display = 'none';
     document.getElementById('dashboard').style.display = 'block';
     loadAll();
   }
 
   function logout() {
+    localStorage.removeItem('ckc_authed');
     document.getElementById('dashboard').style.display = 'none';
     document.getElementById('loginWrap').style.display = 'flex';
   }
