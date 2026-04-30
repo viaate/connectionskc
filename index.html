@@ -62,12 +62,15 @@
   </section>
 
 
-  <!-- CHANGELOG (hidden by default, toggled via admin) -->
+  <!-- IMPACT CHART (hidden by default, toggled via admin) -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
   <section id="changelogSection" style="display:none;background:#f7faf8;padding:48px 24px;">
-    <div class="container" style="max-width:700px;margin:0 auto;">
+    <div class="container" style="max-width:800px;margin:0 auto;">
       <span class="section-label">Impact History</span>
-      <h2 style="font-size:1.6rem;font-weight:900;color:#1a2e1e;margin:10px 0 28px;">What We've Been Up To</h2>
-      <div id="changelogHome"></div>
+      <h2 style="font-size:1.6rem;font-weight:900;color:#1a2e1e;margin:10px 0 28px;">Donations Over Time</h2>
+      <div style="position:relative;background:#fff;border-radius:16px;padding:24px;box-shadow:0 2px 16px rgba(0,0,0,0.07);">
+        <canvas id="impactChart"></canvas>
+      </div>
     </div>
   </section>
 

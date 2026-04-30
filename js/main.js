@@ -40,26 +40,70 @@ fetch('/impact.json?v=' + Date.now())
       document.getElementById('computersCount').textContent = data.computers;
     }
 
-    // Change log section (only if toggled on)
+    // Impact chart (only if toggled on)
     if (data.show_log) {
       fetch('/data/changelog.json?v=' + Date.now())
         .then(r => r.json())
         .then(cl => {
-          const entries = (cl.log || []).slice(0, 8);
-          if (!entries.length) return;
+          // Only Impact Total entries, sorted oldest → newest, plus current value as final point
+          const points = (cl.log || [])
+            .filter(e => e.field === 'Impact Total')
+            .sort((a, b) => new Date(a.date) - new Date(b.date));
+          const allPoints = [...points, { date: new Date().toISOString(), to: data.total }];
+
           document.getElementById('changelogSection').style.display = 'block';
-          document.getElementById('changelogHome').innerHTML = entries.map(e => {
-            const date = new Date(e.date).toLocaleDateString('en-US',
-              { month: 'long', day: 'numeric', year: 'numeric' });
-            const from = fmtVal(e.from, e.field), to = fmtVal(e.to, e.field);
-            return `<div style="display:flex;gap:16px;padding:12px 0;border-bottom:1px solid #e6f7ed;">
-              <div style="width:8px;height:8px;border-radius:50%;background:#22b14c;margin-top:7px;flex-shrink:0;"></div>
-              <div>
-                <div style="font-size:0.8rem;color:#6b8a73;">${date}</div>
-                <div style="font-weight:700;color:#1a2e1e;">${e.field}: ${from} &rarr; ${to}</div>
-              </div>
-            </div>`;
-          }).join('');
+
+          const labels = allPoints.map(e =>
+            new Date(e.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+          );
+          const values = allPoints.map(e => Number(e.to));
+
+          new Chart(document.getElementById('impactChart'), {
+            type: 'line',
+            data: {
+              labels,
+              datasets: [{
+                label: 'Total Donated',
+                data: values,
+                borderColor: '#22b14c',
+                backgroundColor: 'rgba(34,177,76,0.10)',
+                borderWidth: 3,
+                pointBackgroundColor: '#22b14c',
+                pointRadius: 5,
+                pointHoverRadius: 7,
+                fill: true,
+                tension: 0.35
+              }]
+            },
+            options: {
+              responsive: true,
+              plugins: {
+                legend: { display: false },
+                tooltip: {
+                  callbacks: { label: ctx => '$' + Number(ctx.parsed.y).toLocaleString() }
+                }
+              },
+              scales: {
+                y: {
+                  beginAtZero: true,
+                  ticks: {
+                    callback: v => '$' + Number(v).toLocaleString(),
+                    font: { family: 'Nunito', weight: '700' },
+                    color: '#6b8a73'
+                  },
+                  grid: { color: 'rgba(34,177,76,0.08)' }
+                },
+                x: {
+                  ticks: {
+                    font: { family: 'Nunito', weight: '600' },
+                    color: '#6b8a73',
+                    maxRotation: 30
+                  },
+                  grid: { display: false }
+                }
+              }
+            }
+          });
         }).catch(() => {});
     }
   })
